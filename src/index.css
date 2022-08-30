@@ -1,0 +1,43 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-bg-color: #1a2a33;
+  --primary-text-color: #a8bfc9;
+  --secondary-text-color: #1a2a33;
+
+  --yellow-button-bg: #f2b137;
+  --yellow-button-bg-hover: #ffc860;
+  --yellow-button-shadow: #cc8b13;
+
+  --blue-button-bg: #31c3bd;
+  --blue-button-bg-hover: #65e9e4;
+  --blue-button-shadow: #118c87;
+
+  --gray-button-bg: #a8bfc9;
+  --gray-button-bg-hover: #dbe8ed;
+  --gray-button-shadow: #6b8997;
+
+  --button-text-color: #1a2a33;
+
+  --player-select-bg-color: #1f3641;
+  --selector-bg-color: #1a2a33;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--main-bg-color);
+  font-family: monospace;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

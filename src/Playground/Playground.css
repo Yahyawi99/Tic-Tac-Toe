@@ -1,0 +1,181 @@
+.playground {
+  width: 95%;
+  max-width: 500px;
+}
+
+/* Header */
+.playground header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.turn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--primary-text-color);
+  background-color: var(--player-select-bg-color);
+  border-radius: 5px;
+  font-weight: 800;
+  font-size: 1rem;
+  box-shadow: 0px 3px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+}
+.turn img {
+  width: 10px;
+}
+
+.restart-icon {
+  background-color: var(--gray-button-bg);
+  box-shadow: 0px 3px var(--gray-button-shadow);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.25s;
+  padding: 10px;
+}
+.restart-icon:hover {
+  background-color: var(--gray-button-bg-hover);
+}
+
+/* Grid */
+.grid {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.square {
+  width: 33%;
+  max-width: 160px;
+  min-height: 150px;
+  background-color: var(--player-select-bg-color);
+  border-radius: 10px;
+  box-shadow: 0px 4px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.square > img {
+  width: 35%;
+}
+
+/* Score */
+.score-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+.score-container > div {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: 10px;
+  padding: 15px 0px;
+  color: var(--selector-bg-color);
+  font-weight: 800;
+}
+.score {
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.score-container > div:nth-child(1) {
+  background-color: var(--yellow-button-bg);
+}
+.score-container > div:nth-child(2) {
+  background-color: var(--gray-button-bg);
+}
+.score-container > div:nth-child(3) {
+  background-color: var(--blue-button-bg);
+}
+
+/* Modal */
+.modal {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-container {
+  width: 100%;
+  background-color: var(--player-select-bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 25px 0px;
+  color: var(--primary-text-color);
+  font-weight: 800;
+  font-size: 1rem;
+}
+.game-msg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.75rem;
+}
+.game-msg img {
+  width: 20px;
+}
+.modal-btns {
+  display: flex;
+  gap: 20px;
+}
+.modal-btns .btn {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  color: var(--button-text-color);
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.25s;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+.modal-btns .btn:nth-child(1) {
+  background-color: var(--gray-button-bg);
+  box-shadow: 0px 4px var(--gray-button-shadow);
+}
+.modal-btns .btn:nth-child(1):hover {
+  background-color: var(--gray-button-bg-hover);
+}
+.modal-btns .btn:nth-child(2) {
+  background-color: var(--yellow-button-bg);
+  box-shadow: 0px 4px var(--yellow-button-shadow);
+}
+.modal-btns .btn:nth-child(2):hover {
+  background-color: var(--yellow-button-bg-hover);
+}
+
+/* media query */
+@media screen and (min-width: 0px) and (max-width: 335px) {
+  /* Grid */
+  .square {
+    max-width: 30%;
+    min-height: 80px;
+  }
+}
+@media screen and (min-width: 335px) and (max-width: 525px) {
+  /* Grid */
+  .square {
+    max-width: 30%;
+    min-height: 110px;
+  }
+}
+@media screen and (max-height: 650px) {
+  .playground {
+    height: 100vh;
+    padding: 10px 0px;
+  }
+}

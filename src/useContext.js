@@ -57,11 +57,11 @@ const AppProvider = ({ children }) => {
         if (iconClicked === "x") {
           setOpponent("o");
 
-          botBrain(mySquares);
+          botBrain(mySquares, "o");
         } else {
           setOpponent("x");
 
-          botBrain(mySquares);
+          botBrain(mySquares, "x");
         }
         await wait(600);
         setTurn("player1");
@@ -82,7 +82,7 @@ const AppProvider = ({ children }) => {
       : false;
   };
 
-  const botBrain = (grid) => {
+  const botBrain = (grid, icon) => {
     if (
       (checkIfEmpty(grid[1]) &&
         checkIfEmpty(grid[2]) &&
@@ -94,7 +94,7 @@ const AppProvider = ({ children }) => {
         checkIfEmpty(grid[3]) &&
         grid[0].children.length === 0)
     ) {
-      grid[0].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      grid[0].innerHTML = `<img src="/assets/icon-${icon}.svg" alt="icon"  />`;
       return;
     }
 
@@ -108,7 +108,7 @@ const AppProvider = ({ children }) => {
     ) {
       console.log("in 1");
 
-      grid[1].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      grid[1].innerHTML = `<img src="/assets/icon-${icon}.svg" alt="icon"  />`;
       return;
     }
 
@@ -123,7 +123,7 @@ const AppProvider = ({ children }) => {
         checkIfEmpty(grid[8]) &&
         grid[2].children.length === 0)
     ) {
-      grid[2].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      grid[2].innerHTML = `<img src="/assets/icon-${icon}.svg" alt="icon"  />`;
       return;
     }
 
@@ -135,7 +135,7 @@ const AppProvider = ({ children }) => {
         checkIfEmpty(grid[6]) &&
         grid[3].children.length === 0)
     ) {
-      grid[3].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      grid[3].innerHTML = `<img src="/assets/icon-${icon}.svg" alt="icon"  />`;
       return;
     }
 
@@ -153,7 +153,7 @@ const AppProvider = ({ children }) => {
         checkIfEmpty(grid[3]) &&
         grid[4].children.length === 0)
     ) {
-      grid[4].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      grid[4].innerHTML = `<img src="/assets/icon-${icon}.svg" alt="icon"  />`;
       return;
     }
 
@@ -165,7 +165,7 @@ const AppProvider = ({ children }) => {
         checkIfEmpty(grid[4]) &&
         grid[5].children.length === 0)
     ) {
-      grid[5].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      grid[5].innerHTML = `<img src="/assets/icon-${icon}.svg" alt="icon"  />`;
       return;
     }
 
@@ -180,7 +180,7 @@ const AppProvider = ({ children }) => {
         checkIfEmpty(grid[7]) &&
         grid[6].children.length === 0)
     ) {
-      grid[6].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      grid[6].innerHTML = `<img src="/assets/icon-${icon}.svg" alt="icon"  />`;
       return;
     }
 
@@ -192,7 +192,7 @@ const AppProvider = ({ children }) => {
         checkIfEmpty(grid[8]) &&
         grid[7].children.length === 0)
     ) {
-      grid[7].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      grid[7].innerHTML = `<img src="/assets/icon-${icon}.svg" alt="icon"  />`;
       return;
     }
 
@@ -207,7 +207,7 @@ const AppProvider = ({ children }) => {
         checkIfEmpty(grid[7]) &&
         grid[8].children.length === 0)
     ) {
-      grid[8].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      grid[8].innerHTML = `<img src="/assets/icon-${icon}.svg" alt="icon"  />`;
       return;
     }
 
@@ -220,7 +220,7 @@ const AppProvider = ({ children }) => {
 
     filtredGrid[
       rndm
-    ].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+    ].innerHTML = `<img src="/assets/icon-${icon}.svg" alt="icon"  />`;
     return;
   };
 

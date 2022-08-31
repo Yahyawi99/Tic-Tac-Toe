@@ -26,7 +26,7 @@ const Playground = () => {
     resultMsg,
   } = useGlobalContext();
 
-  useEffect(async () => {
+  useEffect(() => {
     if (playMode === "vs CPU") {
       singlePlayerMode();
     } else {
@@ -118,10 +118,14 @@ const Modal = ({
     <section className="modal">
       <div className="modal-container">
         <p className="game-state">{resultMsg}</p>
-        <p className="game-msg">
-          <img src={result.src} alt="" />
-          <span style={{ color: result.clr }}>TAKES THE ROUND</span>
-        </p>
+
+        {resultMsg !== "YOU TIED!" && (
+          <p className="game-msg">
+            <img src={result.src} alt="winner-icon" />
+            <span style={{ color: result.clr }}>TAKES THE ROUND</span>
+          </p>
+        )}
+
         <div className="modal-btns">
           <Link
             to={"/"}
@@ -134,7 +138,7 @@ const Modal = ({
           >
             QUIT
           </Link>
-          <a
+          <button
             style={{
               backgroundColor: result.btnClr,
               boxShadow: `0px 4px ${result.btnShadow}`,
@@ -146,7 +150,7 @@ const Modal = ({
             }}
           >
             NEXT ROUND
-          </a>
+          </button>
         </div>
       </div>
     </section>

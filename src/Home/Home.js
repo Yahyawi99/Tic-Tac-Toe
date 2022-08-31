@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 // CSS
 import "./Home.css";
 // Link
@@ -82,7 +82,11 @@ const Home = () => {
         <p>
           This App was ceated by <span className="name">Yassin Yahyawi</span> as
           part of the{" "}
-          <a href="https:www.frontendmentor.io" target="_blank">
+          <a
+            href="https:www.frontendmentor.io"
+            target="_blank"
+            rel="noreferrer"
+          >
             frontendmentor.io
           </a>{" "}
           challenge.

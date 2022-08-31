@@ -20,6 +20,10 @@ const AppProvider = ({ children }) => {
   const [resultMsg, setResultMsg] = useState("");
   const GridRef = useRef(null);
 
+  // *************************************************************************************************************************************
+  // *************************************************************************************************************************************
+  // *************************************************************************************************************************************
+
   const wait = (time) => new Promise((resolve) => setTimeout(resolve, time));
 
   // add icon to square
@@ -39,6 +43,7 @@ const AppProvider = ({ children }) => {
     }
     gameLogic();
   };
+
   // player vs bot mode
   const singlePlayerMode = async () => {
     if (IsGameOn && playMode === "vs CPU") {
@@ -48,26 +53,15 @@ const AppProvider = ({ children }) => {
         await wait(500);
 
         const mySquares = GridRef.current.children;
-        const filteredSquares = [...mySquares].filter((square) => {
-          if (square.children.length === 0) {
-            return square;
-          }
-        });
-
-        let rndm = Math.floor(Math.random() * filteredSquares.length);
 
         if (iconClicked === "x") {
           setOpponent("o");
 
-          filteredSquares[
-            rndm
-          ].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+          botBrain(mySquares);
         } else {
           setOpponent("x");
 
-          filteredSquares[
-            rndm
-          ].innerHTML = `<img src="/assets/icon-x.svg" alt="icon"  />`;
+          botBrain(mySquares);
         }
         await wait(600);
         setTurn("player1");
@@ -78,6 +72,156 @@ const AppProvider = ({ children }) => {
         setChoosenIcon(iconClicked);
       }
     }
+  };
+
+  // Bot brain
+  const checkIfEmpty = (element) => {
+    return true
+      ? element.children.length > 0 &&
+          element.children[0].src.includes(iconClicked)
+      : false;
+  };
+
+  const botBrain = (grid) => {
+    if (
+      (checkIfEmpty(grid[1]) &&
+        checkIfEmpty(grid[2]) &&
+        grid[0].children.length === 0) ||
+      (checkIfEmpty(grid[4]) &&
+        checkIfEmpty(grid[8]) &&
+        grid[0].children.length === 0) ||
+      (checkIfEmpty(grid[6]) &&
+        checkIfEmpty(grid[3]) &&
+        grid[0].children.length === 0)
+    ) {
+      grid[0].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      return;
+    }
+
+    if (
+      (checkIfEmpty(grid[4]) &&
+        checkIfEmpty(grid[7]) &&
+        grid[1].children.length === 0) ||
+      (checkIfEmpty(grid[0]) &&
+        checkIfEmpty(grid[2]) &&
+        grid[1].children.length === 0)
+    ) {
+      console.log("in 1");
+
+      grid[1].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      return;
+    }
+
+    if (
+      (checkIfEmpty(grid[0]) &&
+        checkIfEmpty(grid[1]) &&
+        grid[2].children.length === 0) ||
+      (checkIfEmpty(grid[6]) &&
+        checkIfEmpty(grid[4]) &&
+        grid[2].children.length === 0) ||
+      (checkIfEmpty(grid[5]) &&
+        checkIfEmpty(grid[8]) &&
+        grid[2].children.length === 0)
+    ) {
+      grid[2].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      return;
+    }
+
+    if (
+      (checkIfEmpty(grid[4]) &&
+        checkIfEmpty(grid[5]) &&
+        grid[3].children.length === 0) ||
+      (checkIfEmpty(grid[0]) &&
+        checkIfEmpty(grid[6]) &&
+        grid[3].children.length === 0)
+    ) {
+      grid[3].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      return;
+    }
+
+    if (
+      (checkIfEmpty(grid[0]) &&
+        checkIfEmpty(grid[8]) &&
+        grid[4].children.length === 0) ||
+      (checkIfEmpty(grid[1]) &&
+        checkIfEmpty(grid[7]) &&
+        grid[4].children.length === 0) ||
+      (checkIfEmpty(grid[2]) &&
+        checkIfEmpty(grid[6]) &&
+        grid[4].children.length === 0) ||
+      (checkIfEmpty(grid[5]) &&
+        checkIfEmpty(grid[3]) &&
+        grid[4].children.length === 0)
+    ) {
+      grid[4].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      return;
+    }
+
+    if (
+      (checkIfEmpty(grid[2]) &&
+        checkIfEmpty(grid[8]) &&
+        grid[5].children.length === 0) ||
+      (checkIfEmpty(grid[3]) &&
+        checkIfEmpty(grid[4]) &&
+        grid[5].children.length === 0)
+    ) {
+      grid[5].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      return;
+    }
+
+    if (
+      (checkIfEmpty(grid[0]) &&
+        checkIfEmpty(grid[3]) &&
+        grid[6].children.length === 0) ||
+      (checkIfEmpty(grid[2]) &&
+        checkIfEmpty(grid[4]) &&
+        grid[6].children.length === 0) ||
+      (checkIfEmpty(grid[8]) &&
+        checkIfEmpty(grid[7]) &&
+        grid[6].children.length === 0)
+    ) {
+      grid[6].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      return;
+    }
+
+    if (
+      (checkIfEmpty(grid[1]) &&
+        checkIfEmpty(grid[4]) &&
+        grid[7].children.length === 0) ||
+      (checkIfEmpty(grid[6]) &&
+        checkIfEmpty(grid[8]) &&
+        grid[7].children.length === 0)
+    ) {
+      grid[7].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      return;
+    }
+
+    if (
+      (checkIfEmpty(grid[0]) &&
+        checkIfEmpty(grid[4]) &&
+        grid[8].children.length === 0) ||
+      (checkIfEmpty(grid[2]) &&
+        checkIfEmpty(grid[5]) &&
+        grid[8].children.length === 0) ||
+      (checkIfEmpty(grid[6]) &&
+        checkIfEmpty(grid[7]) &&
+        grid[8].children.length === 0)
+    ) {
+      grid[8].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+      return;
+    }
+
+    // Random
+    const filtredGrid = [...grid].filter(
+      (square) => square.children.length === 0
+    );
+
+    let rndm = Math.floor(Math.random() * filtredGrid.length);
+
+    filtredGrid[
+      rndm
+    ].innerHTML = `<img src="/assets/icon-o.svg" alt="icon"  />`;
+    return;
   };
 
   // two player mode
@@ -199,8 +343,11 @@ const AppProvider = ({ children }) => {
       return;
     } else if (Grid) {
       gameScore(null);
+
       setIsGameOn(false);
+
       modalResult("tie");
+
       setTimeout(() => {
         setShowModal(true);
       }, 100);
@@ -215,7 +362,9 @@ const AppProvider = ({ children }) => {
       child3.children[0].src = "assets/icon-x-dark.svg";
 
       modalResult("x");
-    } else {
+    }
+
+    if (src.includes("icon-o")) {
       child1.children[0].src = "assets/icon-o-dark.svg";
       child2.children[0].src = "assets/icon-o-dark.svg";
       child3.children[0].src = "assets/icon-o-dark.svg";
@@ -227,10 +376,11 @@ const AppProvider = ({ children }) => {
     child2.style.backgroundColor = "rgba(255,255,0,0.85)";
     child3.style.backgroundColor = "rgba(255,255,0,0.85)";
 
-    gameScore(src);
     setTurn("Game Over");
+
     setTimeout(() => {
       setShowModal(true);
+      gameScore(src);
     }, 100);
   };
 
@@ -248,6 +398,7 @@ const AppProvider = ({ children }) => {
       setScore({ ...score, ties: score.ties + 1 });
     }
   };
+
   // make the player who chooses X plays first
   const playerFirst = (mode) => {
     if (mode === "vs CPU") {
@@ -256,6 +407,7 @@ const AppProvider = ({ children }) => {
       } else {
         setTurn("player1");
       }
+      //
     } else {
       if (iconClicked === "o") {
         setTurn("player2");
@@ -288,17 +440,25 @@ const AppProvider = ({ children }) => {
         btnClr: "var(--yellow-button-bg)",
         btnShadow: "var(--yellow-button-shadow)",
       });
-    } else {
+    } else if (icon === "o") {
       setResult({
         src: "/assets/icon-o.svg",
         clr: "var(--yellow-button-bg)",
         btnClr: "var(--blue-button-bg)",
         btnShadow: "var(--blue-button-shadow)",
       });
+    } else {
+      setResult({
+        src: "",
+        clr: "",
+        btnClr: "var(--gray-button-bg-hover)",
+        btnShadow: "var(--gray-button-shadow)",
+      });
     }
 
     modalResultTxt(icon);
   };
+
   const modalResultTxt = (icon) => {
     if (icon === iconClicked) {
       setResultMsg("YOU WON!");
@@ -326,7 +486,6 @@ const AppProvider = ({ children }) => {
         gameLogic,
         IsGameOn,
         setIsGameOn,
-        wait,
         showModal,
         setShowModal,
         score,
